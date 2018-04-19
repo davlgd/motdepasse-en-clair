@@ -1,0 +1,17 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#main, footer { 
+    margin: auto;
+    background: white;
+    width: 50%;
+}
+
+footer {
+    text-align: center;
+}
+
+h1 {
+    text-decoration: underline;
+}
