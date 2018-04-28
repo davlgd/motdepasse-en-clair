@@ -1,17 +1,59 @@
-body {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+body{
+    background: #e6ecf0;
+    font-family: 'Helvetica Neue',Helvetica,sans-serif;
+    font-size: 12pt;
 }
 
-#main, footer { 
-    margin: auto;
+#wrapper, footer{
+    width: 80%;
+}
+
+#wrapper {
     background: white;
-    width: 50%;
+    margin: 30px auto 0 auto;
+    border-radius: 8px;
+    box-shadow: rgba(0,0,0,0.2) 0 0 0 1px, rgba(0,0,0,0.45) 0 3px 10px;
+}
+
+a:hover{
+    color: #00a8f7;
+}
+
+a{
+    color:#ea8212;
+}
+
+header{
+    padding: 15px;
+    border-radius: 8px 8px 0 0;
+    background: #014359;
+    color: white;
+}
+
+h1{
+    margin: 0;
+    font-size: 18pt;
+    text-decoration: underline;
+}
+
+section{
+    padding: 15px;
 }
 
 footer {
-    text-align: center;
+    margin: auto;
+    padding: 20px;
+    font-size: 10pt;
 }
 
-h1 {
-    text-decoration: underline;
+footer span:nth-child(odd){
+    float: left;
+}
+
+footer span:nth-child(even){
+    float: right;
+}
+
+footer a {
+    font-weight: bold;
 }
