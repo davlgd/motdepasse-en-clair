@@ -5,6 +5,8 @@ function showData (sites) {
     sitesList.forEach(element => {
         document.getElementById("data").appendChild(dataHtmlFormat(element));
     });
+
+    document.getElementById("site_count").innerText = `${sites.list.length} sites continuent de stocker les mots de passe en clair :`;
 }
 
 function dataHtmlFormat(data){
