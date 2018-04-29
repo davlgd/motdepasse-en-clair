@@ -1,6 +1,8 @@
+let list = document.getElementById("data");
+let button = document.getElementById("shower");
+
 document.getElementById("shower").addEventListener("click", initList);
-var list = document.getElementById("data");
-var button = document.getElementById("shower");
+document.getElementById("year").innerText = new Date().getFullYear();
 
 function initList(buttonStatus) {
     switch (list.className) {
@@ -31,8 +33,11 @@ function showData (sites) {
 }
 
 function dataHtmlFormat(data){
-    let date = new Date(parseInt(data.entry_date));
-    let text = " a  été ajouté dans notre base le " + date.toLocaleDateString("fr-FR") + ". ";
+    let date = new Date(data.entry_date);
+    let delay = Date.now() - date;
+    let jours = Math.floor(delay / 86400000);
+
+    let text = ` est référencé depuis ${jours} jours. `;
 
     switch(data.status)
     {

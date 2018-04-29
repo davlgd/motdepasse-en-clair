@@ -9,7 +9,7 @@
 const sites = {
     "list":
     [
-        { "id": "1", "name":"Les Echos", "url": "https://www.lesechos.fr", "entry_date": "1524159327719", "status":"1" },
-        { "id": "2", "name":"Societe.com", "url": "https://www.societe.com", "entry_date": "1524159327720", "status":"2" }
+        { "name":"Les Echos", "url": "https://www.lesechos.fr", "entry_date": "2018-04-19", "status":"1" },
+        { "name":"Societe.com", "url": "https://www.societe.com", "entry_date": "2018-04-19", "status":"2" }
     ]
 }
