@@ -1,3 +1,23 @@
+document.getElementById("shower").addEventListener("click", initList);
+var list = document.getElementById("data");
+var button = document.getElementById("shower");
+
+function initList(buttonStatus) {
+    switch (list.className) {
+        case "datahide":
+            list.className = "datashow";
+            button.innerText = "Réduire";
+            break;
+    
+        default:
+            list.className = "datahide";
+            button.innerText = "Afficher plus";
+            break;
+    }
+
+    if (!buttonStatus) button.className = "button_hide";
+}
+
 function showData (sites) {
     let sitesList = sites.list
     sitesList.sort((a, b) => parseFloat(b.entry_date) - parseFloat(a.entry_date));
@@ -7,6 +27,7 @@ function showData (sites) {
     });
 
     document.getElementById("site_count").innerText = `${sites.list.length} sites continuent de stocker les mots de passe en clair :`;
+    initList(sites.list.length > 3);
 }
 
 function dataHtmlFormat(data){

@@ -40,6 +40,23 @@ section{
     padding: 15px;
 }
 
+.datahide li:nth-child(n+4), .button_hide{
+    display:none;
+}
+
+.datashow li:nth-child(n+4){
+    display:list-item;
+}
+
+#shower{
+    margin: auto;
+    border-radius: 8px;
+    background: #ea8212;
+    padding: 10px 30px;
+    text-decoration: none;
+    color: white;
+}
+
 footer {
     margin: auto;
     padding: 20px;

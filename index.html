@@ -4,8 +4,6 @@
         <meta charset="utf-8">
         <title>Mot de passe en clair.fr - Les sites qui ne respectent pas les données de leurs utilisateurs</title>
         <link rel="stylesheet" href="css/style.css">
-        <script src="data/sites.js"></script>
-        <script src="js/getData.js"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -18,6 +16,12 @@
             <p style="padding-left: 30px;">&laquo; <em>La commission consid&egrave;re que le mot de passe ne doit jamais &ecirc;tre stock&eacute; en clair. Elle recommande que tout mot de passe utile &agrave; la v&eacute;rification de l'authentification et devant &ecirc;tre stock&eacute; sur un serveur soit pr&eacute;alablement transform&eacute; au moyen d'une fonction cryptographique non r&eacute;versible et s&ucirc;re (c'est-&agrave;-dire utilisant un algorithme public r&eacute;put&eacute; fort dont la mise en &oelig;uvre logicielle est exempte de vuln&eacute;rabilit&eacute; connue), int&eacute;grant l'utilisation d'un sel ou d'une cl&eacute;</em> &raquo;</p>
             <p>Dit de mani&egrave;re plus claire, un service auquel peuvent se connecter des utilisateurs ne doit pas stocker le mot de passe en clair ou chiffr&eacute; de mani&egrave;re r&eacute;versible. Les d&eacute;veloppeurs doivent lui pr&eacute;f&eacute;rer une empreinte (hash) calcul&eacute;e avec une composante al&eacute;atoire qu'il est le seul &agrave; conna&icirc;tre (le sel). C'est cette empreinte qui sera compar&eacute;e &agrave; celle du mot de passe entr&eacute; par l'utilisateur lors d'une tentative de connexion. </p>            
             
+            <div id="list">
+                <h2 id="site_count"></h2>
+                <ol id="data"></ol>      
+            </div>
+            <div align="center"><a href="#list" id="shower"></a></div>
+
             <h2>Plus d'explications sur la bonne manière de stocker un mot de passe</h2>
             <p>Ainsi, si votre adresse e-mail est &laquo; toto@toto.com &raquo; et votre mot de passe &laquo; moncodetopsecret &raquo;, seule la premi&egrave;re information doit &ecirc;tre stock&eacute;e telle qu'elle par le site. Il devra appliquer un algorithme au mot de passe avant de le stocker. Pour vous donner un exemple plus parlant, reposant sur <a href="https://fr.wikipedia.org/wiki/PBKDF2" target="_blank">PBKDF2</a> cela donne les param&egrave;tres suivants :</p>
             <ul>
@@ -37,11 +41,6 @@
             <h2>Votre site est référencé par erreur, ou vous avez corrigé le problème ?</h2>
             <p>Si jamais votre site fait partie de notre liste, mais que vous ne stockez pas les mots de passe en clair, ou que vous avez apporté une correction, faites le nous savoir. Il suffit de <a href="mailto:info@motdepasseenclair.fr?subject=Mon site ne stocke pas les mots de passe en clair">nous envoyer un email.</a></p>    
 
-            <div id="list">
-                <h2 id="site_count"></h2>
-                <ol id="data">
-                </ol>
-            </div>
             </section>
         </div>
         <footer>
@@ -54,5 +53,7 @@
             </span>
         </footer>
     </body>
+    <script src="data/sites.js"></script>
+    <script src="js/getData.js"></script>
     <script type="text/javascript">showData(sites);</script>
 </html>
