@@ -1,59 +1,75 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title>Mot de passe en clair.fr - Les sites qui ne respectent pas les données de leurs utilisateurs</title>
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
-        <div id="wrapper">
-            <header>
-                <h1>Mot de passe en clair.fr</h1>
-            </header>
-            <section>
 
-            <p>Nous sommes en 2018, et il existe toujours des sites qui se permettent de stocker les mots de passe de leurs utilisateurs en clair. Une m&eacute;thode de conservation qui contrevient &agrave; toutes les recommandations de s&eacute;curit&eacute;, notamment celles &eacute;tablies par la CNIL.  Dans sa d&eacute;lib&eacute;ration <a href="https://www.legifrance.gouv.fr/affichCnil.do?oldAction=rechExpCnil&amp;id=CNILTEXT000035142451&amp;fastReqId=898883081&amp;fastPos=1" target="_blank">n&deg;2017-190 du 22 juin 2017</a> elle pr&eacute;cise ainsi :</p>
-            <p style="padding-left: 30px;">&laquo; <em>La commission consid&egrave;re que le mot de passe ne doit jamais &ecirc;tre stock&eacute; en clair. Elle recommande que tout mot de passe utile &agrave; la v&eacute;rification de l'authentification et devant &ecirc;tre stock&eacute; sur un serveur soit pr&eacute;alablement transform&eacute; au moyen d'une fonction cryptographique non r&eacute;versible et s&ucirc;re (c'est-&agrave;-dire utilisant un algorithme public r&eacute;put&eacute; fort dont la mise en &oelig;uvre logicielle est exempte de vuln&eacute;rabilit&eacute; connue), int&eacute;grant l'utilisation d'un sel ou d'une cl&eacute;</em> &raquo;</p>
-            <p>Dit de mani&egrave;re plus claire, un service auquel peuvent se connecter des utilisateurs ne doit pas stocker le mot de passe en clair ou chiffr&eacute; de mani&egrave;re r&eacute;versible. Les d&eacute;veloppeurs doivent lui pr&eacute;f&eacute;rer une empreinte (hash) calcul&eacute;e avec une composante al&eacute;atoire qu'il est le seul &agrave; conna&icirc;tre (le sel). C'est cette empreinte qui sera compar&eacute;e &agrave; celle du mot de passe entr&eacute; par l'utilisateur lors d'une tentative de connexion. </p>            
-            
+<head>
+    <meta charset="utf-8">
+    <title>Mot de passe en clair.fr - Les sites qui ne respectent pas les données de leurs utilisateurs</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <header>
+            <h1>Mot de passe en clair.fr</h1>
+        </header>
+        <section>
+
+            <p>Nous sommes en <span id="year"></span>, et il existe toujours des sites qui se permettent de stocker les mots de passe de leurs utilisateurs en clair. Une m&eacute;thode de conservation qui contrevient &agrave; toutes les recommandations de
+                s&eacute;curit&eacute;, notamment celles <a href="https://www.cnil.fr/fr/authentification-par-mot-de-passe-les-mesures-de-securite-elementaires" target="_blank">&eacute;tablies par la CNIL</a>.</p>
+            <p>Dans sa d&eacute;lib&eacute;ration <a href="https://www.legifrance.gouv.fr/affichCnil.do?oldAction=rechExpCnil&amp;id=CNILTEXT000035142451&amp;fastReqId=898883081&amp;fastPos=1" target="_blank">n&deg;2017-190 du 22 juin 2017</a> elle pr&eacute;cise
+                ainsi :</p>
+            <p style="padding-left: 30px;">&laquo; <em>La commission consid&egrave;re que le mot de passe ne doit jamais &ecirc;tre stock&eacute; en clair. Elle recommande que tout mot de passe utile &agrave; la v&eacute;rification de l'authentification et devant &ecirc;tre stock&eacute; sur un serveur soit pr&eacute;alablement transform&eacute; au moyen d'une fonction cryptographique non r&eacute;versible et s&ucirc;re (c'est-&agrave;-dire utilisant un algorithme public r&eacute;put&eacute; fort dont la mise en &oelig;uvre logicielle est exempte de vuln&eacute;rabilit&eacute; connue), int&eacute;grant l'utilisation d'un sel ou d'une cl&eacute;</em>                &raquo;</p>
+            <p>Dit de mani&egrave;re plus claire, un service auquel peuvent se connecter des utilisateurs ne doit pas stocker le mot de passe en clair ou chiffr&eacute; de mani&egrave;re r&eacute;versible. Les d&eacute;veloppeurs doivent lui pr&eacute;f&eacute;rer
+                une empreinte (hash) calcul&eacute;e avec une composante al&eacute;atoire qu'il est le seul &agrave; conna&icirc;tre (le sel). C'est cette empreinte qui sera compar&eacute;e &agrave; celle du mot de passe entr&eacute; par l'utilisateur
+                lors d'une tentative de connexion. </p>
+
             <div id="list">
                 <h2 id="site_count"></h2>
-                <ol id="data"></ol>      
+                <ol id="data"></ol>
             </div>
-            <div align="center"><a href="#list" id="shower"></a></div>
+            <div class="button">
+                <a href="#list" id="shower"></a>
+            </div>
 
-            <h2>Plus d'explications sur la bonne manière de stocker un mot de passe</h2>
-            <p>Ainsi, si votre adresse e-mail est &laquo; toto@toto.com &raquo; et votre mot de passe &laquo; moncodetopsecret &raquo;, seule la premi&egrave;re information doit &ecirc;tre stock&eacute;e telle qu'elle par le site. Il devra appliquer un algorithme au mot de passe avant de le stocker. Pour vous donner un exemple plus parlant, reposant sur <a href="https://fr.wikipedia.org/wiki/PBKDF2" target="_blank">PBKDF2</a> cela donne les param&egrave;tres suivants :</p>
+            <h2>Que faire face à ces pratiques ?</h2>
+            <p>Vous pouvez <a href="https://www.cnil.fr/fr/plaintes" target="_blank">déposer une plainte</a> auprès de la CNIL. Vous pouvez également nous <a href="mailto:info@motdepasseenclair.fr?subject=Ce%20site%20stocke%20les%20mots%20de%20passe%20en%20clair%20%21">nous envoyer un email</a>                ! Nous vérifierons l'information, informerons le site, et le mentionnerons ici s'il stocke effectivement les mots de passe de ses utilisateurs en clair.</p>
+
+            <h2>Votre site est référencé par erreur, vous avez corrigé le problème ?</h2>
+            <p>Si jamais votre site fait partie de notre liste, mais que vous ne stockez pas les mots de passe en clair, ou que vous avez apporté une correction, faites le nous savoir. Il suffit de <a href="mailto:info@motdepasseenclair.fr?subject=Mon%20site%20ne%20stocke%20pas%20les%20mots%20de%20passe%20en%20clair">nous envoyer un email.</a></p>
+
+            <h2>Comment bien stocker un mot de passe ?</h2>
+            <p>Si votre adresse e-mail est &laquo; toto@toto.com &raquo; et votre mot de passe &laquo; moncodetopsecret &raquo;, seule la premi&egrave;re information doit &ecirc;tre stock&eacute;e telle qu'elle par le site. Il devra appliquer un algorithme
+                au mot de passe avant de le placer dans sa base de données.</p>
+            <p>Pour vous donner un exemple plus parlant, reposant sur <a href="https://fr.wikipedia.org/wiki/PBKDF2" target="_blank">PBKDF2</a> cela donne les param&egrave;tres suivants :</p>
             <ul>
-            <li>Mot de passe : moncodetopsecret</li>
-            <li>Sel : CA7D6F872A1769FBC5F6AF531858287E</li>
-            <li>It&eacute;rations : 1000 </li>
-            <li>Longueur : 32 bytes</li>
+                <li>Mot de passe : moncodetopsecret</li>
+                <li>Sel : CA7D6F872A1769FBC5F6AF531858287E</li>
+                <li>It&eacute;rations : 1000 </li>
+                <li>Longueur : 32 bytes</li>
             </ul>
             <ul>
-            <li><a href="https://asecuritysite.com/encryption/PBKDF2z" target="_blank">Empreinte calcul&eacute;e</a> : i3p48N0gGl/bFFtj1lp0HMx7ffRfdMlACHyNS1ugd+4=</li>
+                <li><a href="https://asecuritysite.com/encryption/PBKDF2z" target="_blank">Empreinte calcul&eacute;e</a> : i3p48N0gGl/bFFtj1lp0HMx7ffRfdMlACHyNS1ugd+4=</li>
             </ul>
-            <p>C'est ce dernier &eacute;l&eacute;ment qui sera stock&eacute; dans la base de donn&eacute;es. L'algorithme &eacute;tant non r&eacute;versible, on peut v&eacute;rifier qu'un mot de passe correspond &agrave; une empreinte, mais pas retrouver un mot de passe depuis une empreinte.</p>
-            <p>Lorsque vous tenterez de vous connecter, le site r&eacute;cup&eacute;rera le mot de passe que vous avez entr&eacute;, calculera son empreinte et v&eacute;rifiera qu'elle correspond &agrave; celle stock&eacute;e dans sa base de donn&eacute;es. Ainsi, en cas de faille de s&eacute;curit&eacute;, votre mot de passe ne se retrouvera pas dans la nature.</p>
-           
-            <h2>Que faire pour lutter contre ces sites ?</h2>
-            <p>Vous pouvez <a href="https://www.cnil.fr/fr/plaintes" target"_blank">déposer une plainte</a> auprès de la CNIL. Vous pouvez également nous faire connaître ce site. Nous vérifierons l'information, contacterons le site, et le mentionnerons ici s'il stocke effectivement les mots de passe de ses utilisateurs en clair. Pour cela, rien de plus simple, il suffit de <a href="mailto:info@motdepasseenclair.fr?subject=Ce site stocke les mots de passe en clair !">nous envoyer un email</a> !</p>
-            <h2>Votre site est référencé par erreur, ou vous avez corrigé le problème ?</h2>
-            <p>Si jamais votre site fait partie de notre liste, mais que vous ne stockez pas les mots de passe en clair, ou que vous avez apporté une correction, faites le nous savoir. Il suffit de <a href="mailto:info@motdepasseenclair.fr?subject=Mon site ne stocke pas les mots de passe en clair">nous envoyer un email.</a></p>    
+            <p>C'est ce dernier &eacute;l&eacute;ment qui sera stock&eacute;. L'algorithme &eacute;tant non r&eacute;versible, on peut v&eacute;rifier qu'un mot de passe correspond &agrave; une empreinte, mais pas retrouver un mot de passe depuis une empreinte.</p>
+            <p>Lorsque vous tenterez de vous connecter, le site r&eacute;cup&eacute;rera le mot de passe que vous avez entr&eacute;, calculera son empreinte et v&eacute;rifiera qu'elle correspond &agrave; celle stock&eacute;e dans sa base de donn&eacute;es.
+                Ainsi, en cas de faille de s&eacute;curit&eacute;, votre mot de passe ne se retrouvera pas dans la nature.</p>
+        </section>
+    </div>
 
-            </section>
-        </div>
-        <footer>
-            <span>Un site créé par <a href="https://www.nextinpact.com" target="_blank">Next INpact.com</a>
+    <footer>
+        <span>Un site créé par <a href="https://www.nextinpact.com" target="_blank">Next INpact.com</a>
             </span>
-            <span>Soutenez-nous : 
+        <span>Soutenez-nous : 
                 <a href="https://www.nextinpact.com/abonnement" target="_blank">Abonnement</a> / 
                 <a href="https://www.okpal.com/nextinpact" target="_blank">Dons défiscalisables</a> / 
-                <a href="https://fr.ulule.com/next-inpact/" target="_blank">Notre campagne Ulule
+                <a href="https://fr.ulule.com/next-inpact/" target="_blank">Notre campagne Ulule</a>
             </span>
-        </footer>
-    </body>
+    </footer>
     <script src="data/sites.js"></script>
     <script src="js/getData.js"></script>
-    <script type="text/javascript">showData(sites);</script>
+    <script>
+        showData(sites);
+    </script>
+</body>
+
 </html>

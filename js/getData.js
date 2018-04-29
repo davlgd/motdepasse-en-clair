@@ -10,7 +10,7 @@ function initList(buttonStatus) {
             list.className = "datashow";
             button.innerText = "Réduire";
             break;
-    
+
         default:
             list.className = "datahide";
             button.innerText = "Afficher plus";
@@ -20,8 +20,8 @@ function initList(buttonStatus) {
     if (!buttonStatus) button.className = "button_hide";
 }
 
-function showData (sites) {
-    let sitesList = sites.list
+function showData(sites) {
+    let sitesList = sites.list;
     sitesList.sort((a, b) => parseFloat(b.entry_date) - parseFloat(a.entry_date));
 
     sitesList.forEach(element => {
@@ -32,22 +32,21 @@ function showData (sites) {
     initList(sites.list.length > 3);
 }
 
-function dataHtmlFormat(data){
+function dataHtmlFormat(data) {
     let date = new Date(data.entry_date);
     let delay = Date.now() - date;
     let jours = Math.floor(delay / 86400000);
 
     let text = ` est référencé depuis ${jours} jours. `;
 
-    switch(data.status)
-    {
+    switch (data.status) {
         case "1":
             text += "Une correction est en cours.";
             break;
 
         case "2":
-            text += "Aucune correction ne semble en cours."  
-        break;
+            text += "Aucune correction ne semble en cours.";
+            break;
     }
 
     let lien = document.createElement("a");
